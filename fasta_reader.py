@@ -3,12 +3,7 @@
 # Description: Input a file containing fasta sequences.
 #   The output is a generator object of the sequences in there original order.
 #-----------------------------
-import argparse, re
-
-parser = argparse.ArgumentParser()
-parser.add_argument('-f', '--seq_file', help='The path to file containing fasta sequences.')
-args = parser.parse_args()
-input_file = args.seq_file
+import re
 
 class fasta_seq_file:
 	def __init__(self, file_name):
@@ -28,6 +23,11 @@ class fasta_seq_file:
 			yield header + self.dict_container[header]
 
 if __name__ == '__main__':
+	import argparse
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-f', '--seq_file', help='The path to file containing fasta sequences.')
+	args = parser.parse_args()
+	input_file = args.seq_file
 	my_obj = fasta_seq_file(input_file)
 	seq_gener = my_obj.fasta_generator()
 	condition = True
